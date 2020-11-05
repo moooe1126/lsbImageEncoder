@@ -50,6 +50,12 @@ int main(int argc, char* argv[]) {
     exit(1);
   }
   const char* msg = argv[2]; //gets msg to be hidden from input
+
+  const char* outputname = "output.png";
+  if(argv[3] != NULL){
+    outputname = argv[3];
+  }
+
   
   Image_load(&img_source, src); //load image given by command line
   Image_create(&img_output, img_source.width, img_source.height, img_source.channels, true); //create output image of the same size
@@ -66,17 +72,16 @@ int main(int argc, char* argv[]) {
       if(bit_array[i] == 1){
         new_data = 1|new_data; //set least signifcant bit
       }
-      img_output.data[i] = (uint8_t)new_data;
+      img_output.data[i] = (uint8_t)new_data; //set data after re casting it to a uint8_t
     }
     else{
-      img_output.data[i] = img_source.data[i];
+      img_output.data[i] = img_source.data[i]; //otherwise just place the old data
     }
-    printf("%d,",img_output.data[i]);
   }
-  Image_save(&img_output, "output.png");
+  Image_save(&img_output, outputname);
 
   free(bit_array); //clean this up so its not on the heap forever
-
+  
 
   return 0;
 }

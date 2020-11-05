@@ -48,7 +48,9 @@ struct string* init_string(char* str){
 }
 void addChar(struct string* str, char letter){
   int length = str_length(str->head);
-  int new_size = length+sizeof(letter);
+
+  int new_size = length+sizeof(letter); 
+  //resize to prevent segfault
   while(new_size > str->size){
     _double_string(str);
   }
@@ -78,9 +80,7 @@ void print(struct string* str){
   printf("%d", str->size);
 }
 
-char* fetchData(Image* img){
-  
-}
+
 
 
 int main(int argc, char* argv[]) {
