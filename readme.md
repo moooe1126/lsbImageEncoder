@@ -1,2 +1,2 @@
 
-[run online](https://repl.it/@paulfears/project3?outputonly=1)
+[run online](https://repl.it/@paulfears/project3)
