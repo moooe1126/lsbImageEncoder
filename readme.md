@@ -1,2 +1,2 @@
 
-<iframe frameborder="0" width="100%" height="500px" src="https://repl.it/@amasad/PitifulLastingWhoopingcrane?lite=true"></iframe>
+[run online](https://repl.it/@paulfears/project3?outputonly=1)
