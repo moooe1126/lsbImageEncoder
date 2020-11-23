@@ -1,5 +1,7 @@
 RED='\033[0;31m'
-
+gcc -o steggo core/Image.c core/steggo.c -lm
+gcc -o extract core/Image.c core/extract.c -lm
+clear
 
 while [ 1 -eq 1 ]
 do
