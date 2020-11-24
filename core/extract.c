@@ -81,14 +81,28 @@ void print(struct string* str){
 }
 
 
+char* decrypt(int gKey, struct string * givString){
 
+  givString->head;
+
+  for(int i = 0; i<str_length(givString->head)-1; i++){
+    givString->head[i] = (givString->head[i]) - gKey;
+  }
+
+  return givString->head;
+
+}
 
 int main(int argc, char* argv[]) {
   Image img;
+  int key;
 
   if(argv[1] == NULL){
     printf("filename needed as first argument\n");
     exit(1);
+  }
+  if (argv[2] != NULL){
+    key = atoi(argv[2]);
   }
   const char* src = argv[1]; //sets variable src to inputed filename
   Image_load(&img, src); //load image given by command line
@@ -108,5 +122,7 @@ int main(int argc, char* argv[]) {
       output+=intPow(2, 8-((i%8)+1)); //add 2^position in string
     }
   }
-  printf("%s", text->head);
+
+
+  printf("%s", decrypt(key, text));
 }

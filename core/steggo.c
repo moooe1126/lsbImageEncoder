@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Image.h"
+#include <math.h>
 
 int str_length(const char* str){
 /*get the length of a string including the null byte*/
@@ -35,6 +36,19 @@ int* string_to_bit_array(const char* str){
   return output;
 }
 
+// shifts letters 
+char* encrypt(int gkey, char* gData){
+  int key = gkey;
+  key = key % 255;
+
+  char* data = gData;
+
+  for (int i = 0; i < str_length(data) - 1; i++){
+    data[i] = (data[i] + abs(key) );
+  }
+  return data;
+}
+
 int main(int argc, char* argv[]) {
   Image img_source;
   Image img_output;
@@ -56,6 +70,9 @@ int main(int argc, char* argv[]) {
     outputname = argv[3];
   }
 
+  if(argv[4] != NULL){
+    msg = encrypt(atoi(argv[4]), argv[2]);
+  }
   
   Image_load(&img_source, src); //load image given by command line
   Image_create(&img_output, img_source.width, img_source.height, img_source.channels, true); //create output image of the same size
